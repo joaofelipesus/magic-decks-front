@@ -1,8 +1,24 @@
 <template>
   <div id="app">
+
+    <home-navbar />
+
     <router-view class="app"></router-view>
   </div>
 </template>
+
+<script>
+import HomeNavbar from '@/components/HomeNavbar.vue'
+
+export default {
+  name: 'App',
+
+  components: {
+    HomeNavbar
+  }
+}
+</script>
+
 
 <style lang="scss" scoped>
 .app {
