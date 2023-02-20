@@ -3,30 +3,12 @@
     <home-navbar />
 
     <div class="container pt-5 d-flex">
-      <div
+      <deck-card
         v-for="deck in decks"
         :key="deck.id"
-        class="card col-3 me-2"
-      >
-        <div class="card-body">
-          <h3 class="mb-2 text-center">{{deck.name}}</h3>
-          <div class="mb-3 d-flex justify-content-center">
-            <h6
-              class="badge rounded-pill text-center"
-              :class="formatCollor(deck.format)"
-            >
-              {{deck.format}}
-            </h6>
-          </div>
-
-          <router-link
-            :to="{ name: 'deck-show', params: { id: deck.id } }"
-            class="btn btn-outline-info w-100"
-          >
-            More info
-          </router-link>
-        </div>
-      </div>
+        :deck="deck"
+        data-test="deck-card"
+      />
     </div>
   </main>
 </template>
@@ -35,6 +17,7 @@
 import { mapActions } from 'vuex'
 import formErrorHandler from '@/mixins/load-error-handler'
 import HomeNavbar from '@/components/HomeNavbar'
+import DeckCard from '@/components/DeckCard'
 
 export default {
   name: 'DeckList',
@@ -42,6 +25,7 @@ export default {
   mixins: [formErrorHandler],
 
   components: {
+    DeckCard,
     HomeNavbar
   },
 
@@ -68,13 +52,6 @@ export default {
 
   methods: {
     ...mapActions(['listDecks']),
-
-    formatCollor (format) {
-      if (format === 'standard') { return 'bg-primary' }
-      if (format === 'modern') { return 'bg-success' }
-      if (format === 'commander') { return 'bg-secondary' }
-      return ''
-    }
   }
 }
 </script>
