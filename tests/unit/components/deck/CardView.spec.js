@@ -1,8 +1,6 @@
 import { shallowMount } from '@vue/test-utils'
 import CardView from '@/components/deck/CardView.vue'
 
-
-
 function cardViewBuilder() {
   const propsData = {
     card: {
