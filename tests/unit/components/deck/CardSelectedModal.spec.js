@@ -1,5 +1,22 @@
 import CardSelectedModal from '@/components/deck/CardSelectedModal'
 import factoryBuilder from '../../factory-builder'
+import flushPromises from 'flush-promises'
+
+const mocks = {
+  $toast: {
+    success: jest.fn()
+  }
+}
+
+const store = {
+  actions: {
+    addToCollection: jest.fn(() => {
+      return Promise.resolve({
+        data: { id: '1' }
+      })
+    })
+  }
+}
 
 function factory ({ show }) {
   const propsData = {
@@ -17,7 +34,7 @@ function factory ({ show }) {
     }
   }
 
-  return factoryBuilder(CardSelectedModal, { propsData })
+  return factoryBuilder(CardSelectedModal, { propsData, mocks, store })
 }
 
 describe('CardSelectedModal', () => {
@@ -61,5 +78,18 @@ describe('CardSelectedModal', () => {
     wrapper.find('[data-test="card-selected-modal"]').trigger('click')
 
     expect(wrapper.emitted('closeSelectedCardModal')).toBeTruthy()
+  })
+
+  describe('add card to collection', () => {
+    it.only('renders success toast and close modal', async () => {
+      const wrapper = factory({ show: true })
+
+      wrapper.find('[data-test="add-to-collection"]').trigger('click')
+
+      await flushPromises()
+
+      expect(mocks.$toast.success).toHaveBeenCalledWith('Card added to collection.')
+      expect(wrapper.emitted('closeSelectedCardModal')).toBeTruthy()
+    })
   })
 })

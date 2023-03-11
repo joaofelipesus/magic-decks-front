@@ -24,7 +24,7 @@
           </div>
 
           <div class="w-75">
-            <session class="d-flex flex-column mb-5">
+            <section class="d-flex flex-column mb-5">
               <span data-test="name-en">Name en: {{card.name_en}}</span>
               <span data-test="name-pt">Name pt: {{card.name_pt}}</span>
               <span data-test="colors">Colors: {{card.colors}}</span>
@@ -33,12 +33,13 @@
               <span data-test="set-number">Set number: {{card.set_number}}</span>
               <span data-test="power">Power: {{card.power}}</span>
               <span data-test="toughness">Toughness: {{card.toughness}}</span>
-            </session>
+            </section>
 
-            <session class="d-flex justify-content-between">
+            <section class="d-flex justify-content-between">
               <button
                 @click="handleAddToCollection"
                 class="btn btn-lg btn-outline-primary"
+                data-test="add-to-collection"
               >
                 Adicionar a coleção
               </button>
@@ -46,7 +47,7 @@
               <button class="btn btn-lg btn-outline-success">
                 Adicionar ao deck
               </button>
-            </session>
+            </section>
           </div>
         </div>
 
@@ -93,7 +94,10 @@ export default {
           this.$toast.success('Card added to collection.')
           this.$emit('closeSelectedCardModal')
         })
-        .catch(error => this.handleResponseError(error))
+        .catch(error => {
+          console.log('ESTOU NO ERRO!')
+          this.handleResponseError(error)
+        })
     }
   }
 }
