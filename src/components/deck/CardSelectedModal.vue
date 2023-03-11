@@ -23,25 +23,46 @@
             >
           </div>
 
-          <div class="d-flex flex-column">
-            <span data-test="name-en">Name en: {{card.name_en}}</span>
-            <span data-test="name-pt">Name pt: {{card.name_pt}}</span>
-            <span data-test="colors">Colors: {{card.colors}}</span>
-            <span data-test="rarity">Rairty: {{card.rarity}}</span>
-            <span data-test="set">Set: {{card.set}}</span>
-            <span data-test="set-number">Set number: {{card.set_number}}</span>
-            <span data-test="power">Power: {{card.power}}</span>
-            <span data-test="toughness">Toughness: {{card.toughness}}</span>
+          <div class="w-75">
+            <session class="d-flex flex-column mb-5">
+              <span data-test="name-en">Name en: {{card.name_en}}</span>
+              <span data-test="name-pt">Name pt: {{card.name_pt}}</span>
+              <span data-test="colors">Colors: {{card.colors}}</span>
+              <span data-test="rarity">Rairty: {{card.rarity}}</span>
+              <span data-test="set">Set: {{card.set}}</span>
+              <span data-test="set-number">Set number: {{card.set_number}}</span>
+              <span data-test="power">Power: {{card.power}}</span>
+              <span data-test="toughness">Toughness: {{card.toughness}}</span>
+            </session>
+
+            <session class="d-flex justify-content-between">
+              <button
+                @click="handleAddToCollection"
+                class="btn btn-lg btn-outline-primary"
+              >
+                Adicionar a coleção
+              </button>
+
+              <button class="btn btn-lg btn-outline-success">
+                Adicionar ao deck
+              </button>
+            </session>
           </div>
         </div>
+
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import { mapActions } from 'vuex'
+import formErrorHandler from '@/mixins/form-error-handler'
+
 export default {
   name: 'CardSelectedModal',
+
+  mixins: [formErrorHandler],
 
   props: {
     card: {
@@ -60,6 +81,18 @@ export default {
       if (this.card.name_pt) { return this.card.name_pt }
 
       return this.card.name_en
+    }
+  },
+
+  methods: {
+    ...mapActions(['addCardToCollection']),
+
+    handleAddToCollection () {
+      this.addCardToCollection(this.card)
+        .then(response => {
+          console.log(response.data)
+        })
+        .catch(error => this.handleResponseError(error))
     }
   }
 }
