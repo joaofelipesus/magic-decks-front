@@ -5,7 +5,7 @@ export default {
     return api.get(`/cards/search?name=${name}&lang=${language}&method=${method}`)
   },
 
-  addToCollection (_, {card}) {
+  addToCollection (_, card) {
     return api.post('/cards', card)
   }
 }
