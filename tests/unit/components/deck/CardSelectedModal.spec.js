@@ -81,7 +81,7 @@ describe('CardSelectedModal', () => {
   })
 
   describe('add card to collection', () => {
-    it.only('renders success toast and close modal', async () => {
+    it('renders success toast and close modal', async () => {
       const wrapper = factory({ show: true })
 
       wrapper.find('[data-test="add-to-collection"]').trigger('click')

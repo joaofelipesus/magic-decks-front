@@ -13,4 +13,16 @@ describe('cardsStore', () => {
       expect(api.get).toHaveBeenCalledWith('/cards/search?name=Akroma&lang=en&method=db')
     })
   })
+
+  describe('#addToCollection', () => {
+    it('calls correct url with name, language and method params', async () => {
+      api.post = jest.fn()
+
+      const card = {id: 1}
+
+      await actions.addToCollection(null, card)
+
+      expect(api.post).toHaveBeenCalledWith('/cards', card)
+    })
+  })
 })
