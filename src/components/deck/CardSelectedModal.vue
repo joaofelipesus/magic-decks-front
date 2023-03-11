@@ -85,12 +85,13 @@ export default {
   },
 
   methods: {
-    ...mapActions(['addCardToCollection']),
+    ...mapActions(['addToCollection']),
 
     handleAddToCollection () {
-      this.addCardToCollection(this.card)
-        .then(response => {
-          console.log(response.data)
+      this.addToCollection(this.card)
+        .then(_response => {
+          this.$toast.success('Card added to collection.')
+          this.$emit('closeSelectedCardModal')
         })
         .catch(error => this.handleResponseError(error))
     }
@@ -117,8 +118,6 @@ export default {
 
     &__card-body {
       @extend .card-body;
-
-
     }
   }
 </style>
