@@ -94,10 +94,7 @@ export default {
           this.$toast.success('Card added to collection.')
           this.$emit('closeSelectedCardModal')
         })
-        .catch(error => {
-          console.log('ESTOU NO ERRO!')
-          this.handleResponseError(error)
-        })
+        .catch(error => this.handleResponseError(error))
     }
   }
 }

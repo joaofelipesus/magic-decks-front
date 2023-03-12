@@ -27,7 +27,7 @@ export default {
 <style lang="scss" scoped>
   .card-view {
     &__image {
-      width: 15%;
+      width: 200px;
     }
   }
 </style>

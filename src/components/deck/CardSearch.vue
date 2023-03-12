@@ -6,7 +6,7 @@
       @closeSelectedCardModal="cardSelected = undefined"
     />
 
-    <div>
+    <div class="mb-5">
       <div class="card-search__search-fields">
         <input-field
           v-model="cardName"
@@ -41,7 +41,7 @@
       </div>
     </div>
 
-    <div>
+    <div class="card-search__cards-list">
       <card-view
         v-for="card in cardsFound"
         :key="card.id"
@@ -158,6 +158,13 @@ export default {
         flex-direction: row;
         gap: 1rem;
       }
+    }
+
+    &__cards-list {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 1rem;
     }
   }
 </style>
