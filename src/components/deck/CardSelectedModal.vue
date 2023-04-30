@@ -37,15 +37,16 @@
 
             <section class="d-flex justify-content-between">
               <button
+                v-if="!card.id"
                 @click="handleAddToCollection"
-                class="btn btn-lg btn-outline-primary"
+                class="btn btn btn-outline-primary"
                 data-test="add-to-collection"
               >
-                Adicionar a coleção
+                Add to collection
               </button>
 
-              <button class="btn btn-lg btn-outline-success">
-                Adicionar ao deck
+              <button class="btn btn btn-outline-success">
+                Add to deck
               </button>
             </section>
           </div>
