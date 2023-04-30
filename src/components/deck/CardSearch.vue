@@ -28,6 +28,7 @@
         <button
           @click="handleSearchOnCollection"
           class="btn btn-outline-primary"
+          data-test="search-on-collection"
         >
           Search on collection
         </button>
