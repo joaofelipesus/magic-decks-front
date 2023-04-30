@@ -1,10 +1,12 @@
 import api from '@/lib/api'
 import actions from '@/store/cards/actions'
+import axios from 'axios'
 
 describe('cardsStore', () => {
   describe('#searchCards', () => {
     it('calls correct url with name, language and method params', async () => {
       api.get = jest.fn()
+      axios.create = jest.fn(() => api)
 
       const params = {name: 'Akroma', language: 'en', method: 'db'}
 

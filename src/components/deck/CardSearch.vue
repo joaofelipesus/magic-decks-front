@@ -41,7 +41,19 @@
       </div>
     </div>
 
-    <div class="card-search__cards-list">
+    <div
+      v-if="searching"
+      class="card-search__loading-div"
+    >
+      <img
+        src="@/assets/loading-gif.gif"
+        alt="Loading"
+      >
+    </div>
+    <div
+      v-else
+      class="card-search__cards-list"
+    >
       <card-view
         v-for="card in cardsFound"
         :key="card.id"
@@ -77,7 +89,8 @@ export default {
       cardName: '',
       cardLanguage: 'en',
       cardsFound: [],
-      cardSelected: undefined
+      cardSelected: undefined,
+      searching: false
     }
   },
 
@@ -94,6 +107,8 @@ export default {
     ...mapActions(['searchCards']),
 
     handleSearchOnCollection () {
+      this.cardsFound = []
+      this.searching = true
       this.searchCards({
         name: this.cardName,
         language: this.cardLanguage,
@@ -101,11 +116,17 @@ export default {
       })
       .then(response => {
         this.cardsFound = response.data
+        this.searching = false
       })
-      .catch(error => this.handleLoadError(error))
+      .catch(error => {
+        this.searching = false
+        this.handleLoadError(error)
+      })
     },
 
     handleSearchOnApi () {
+      this.cardsFound = []
+      this.searching = true
       this.searchCards({
         name: this.cardName,
         language: this.cardLanguage,
@@ -113,9 +134,11 @@ export default {
       })
       .then(response => {
         this.cardsFound = response.data
+        this.searching = false
       })
       .catch(error => {
         console.log(error)
+        this.searching = false
         this.handleLoadError(error)
       })
     },
@@ -165,6 +188,13 @@ export default {
       flex-direction: row;
       flex-wrap: wrap;
       gap: 1rem;
+    }
+
+    &__loading-div {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
     }
   }
 </style>
