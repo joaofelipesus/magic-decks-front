@@ -45,7 +45,10 @@
                 Add to collection
               </button>
 
-              <button class="btn btn btn-outline-success">
+              <button
+                @click="handleCreateDeckCard"
+                class="btn btn btn-outline-success"
+              >
                 Add to deck
               </button>
             </section>
@@ -82,16 +85,29 @@ export default {
       if (this.card.name_pt) { return this.card.name_pt }
 
       return this.card.name_en
+    },
+
+    deckId () {
+      return this.$route.params.id
     }
   },
 
   methods: {
-    ...mapActions(['addToCollection']),
+    ...mapActions(['addToCollection', 'createDeckCard']),
 
     handleAddToCollection () {
       this.addToCollection(this.card)
         .then(_response => {
           this.$toast.success('Card added to collection.')
+          this.$emit('closeSelectedCardModal')
+        })
+        .catch(error => this.handleResponseError(error))
+    },
+
+    handleCreateDeckCard () {
+      this.createDeckCard({deckId: this.deckId, card: this.card})
+        .then(_response => {
+          this.$toast.success('Card added to deck.')
           this.$emit('closeSelectedCardModal')
         })
         .catch(error => this.handleResponseError(error))
