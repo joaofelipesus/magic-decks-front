@@ -33,11 +33,9 @@ export default {
   mounted () {
     this.findDeck(this.deckId)
       .then(response => {
-        console.log(response.data)
         this.setDeck(response.data)
       })
       .catch(error => {
-        console.log(error)
         this.handleLoadError(error)
       })
   },

@@ -138,7 +138,6 @@ export default {
         this.searching = false
       })
       .catch(error => {
-        console.log(error)
         this.searching = false
         this.handleLoadError(error)
       })
@@ -146,7 +145,6 @@ export default {
 
     handleCardClick (card) {
       this.cardSelected = card
-      console.log(card)
     }
   }
 }

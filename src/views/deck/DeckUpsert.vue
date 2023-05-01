@@ -80,8 +80,8 @@ export default {
     handleSubmit() {
       this.createDeck(this.payload())
         .then(response => {
-          console.log(response)
-          // TODO: redirect to show page
+          this.$router.push({ name: 'deck-show', params: { id: response.data.id } })
+          this.$toast.success('Deck created successfully')
         })
         .catch(error => this.handleResponseError(error))
     },
