@@ -11,6 +11,8 @@
 <script>
 import HomeNavbar from '@/components/HomeNavbar.vue'
 import CardSearch from '@/components/deck/CardSearch.vue'
+import { mapActions, mapMutations } from 'vuex'
+import formErrorHandler from '@/mixins/load-error-handler'
 
 export default {
   name: 'DeckShow',
@@ -19,5 +21,30 @@ export default {
     CardSearch,
     HomeNavbar
   },
+
+  mixins: [formErrorHandler],
+
+  computed: {
+    deckId () {
+      return this.$route.params.id
+    }
+  },
+
+  mounted () {
+    this.findDeck(this.deckId)
+      .then(response => {
+        console.log(response.data)
+        this.setDeck(response.data)
+      })
+      .catch(error => {
+        console.log(error)
+        this.handleLoadError(error)
+      })
+  },
+
+  methods: {
+    ...mapActions(['findDeck']),
+    ...mapMutations(['setDeck'])
+  }
 }
 </script>

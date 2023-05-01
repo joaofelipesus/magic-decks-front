@@ -12,10 +12,22 @@ const actions = {
   ...deckCardsStore.actions
 }
 
+const state = {
+  ...decksStore.state
+}
+
+const mutations = {
+  ...decksStore.mutations
+}
+
+const getters = {
+  ...decksStore.getters
+}
+
 export default new Vuex.Store({
   actions,
-  getters: {},
+  getters,
   modules: {},
-  mutations: {},
-  state: {}
+  mutations,
+  state
 })

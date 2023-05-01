@@ -11,5 +11,9 @@ export default {
       format: deck.format,
       description: deck.description
     })
+  },
+
+  findDeck(_, deckId) {
+    return api.get(`/decks/${deckId}`)
   }
 }
