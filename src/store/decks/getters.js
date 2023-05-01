@@ -1,9 +1,15 @@
 export default {
-  deckName(state) {
-    return state.deck.name
+  getDeckName(state) {
+    return state.deck?.name
   },
 
-  deckTotalCards(state) {
+  getDeckTotalCards(state) {
     return state.deck.deck_cards.length
+  },
+
+  getDeckCards (state) {
+    console.log(state.deck)
+
+    return state.deck?.deck_cards
   }
 }
