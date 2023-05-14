@@ -1,10 +1,6 @@
 <template>
   <main class="deck-tab">
-    <div>
-      <h3 class="deck-tab__header">
-        {{ deckName }}
-      </h3>
-    </div>
+    <deck-tab-header />
 
     <hr>
 
@@ -23,15 +19,17 @@
 </template>
 
 <script>
+import DeckTabHeader from './DeckTabHeader.vue'
 import { mapGetters } from 'vuex'
 
 export default {
   name: 'DeckTab',
 
+  components: {
+    DeckTabHeader
+  },
+
   computed: {
-    deckName () {
-      return this.getDeckName()
-    },
 
     deckCards () {
       return this.getDeckCards()
@@ -39,18 +37,10 @@ export default {
   },
 
   methods: {
-    ...mapGetters(['getDeckName', 'getDeckCards'])
+    ...mapGetters(['getDeckCards'])
   }
 }
 </script>
 
 <style lang="scss" scoped>
-  .deck-tab {
-    &__header {
-      text-align: center;
-      font-size: 1.8rem;
-      font-weight: 500;
-      margin-bottom: 1rem;
-    }
-  }
 </style>
