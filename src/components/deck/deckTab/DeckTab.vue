@@ -10,27 +10,32 @@
           v-for="deckCard in deckCards"
           :key="deckCard.id"
         >
-          {{ deckCard.card.name_pt }}
+          {{ deckCard.card.name_pt || deckCard.card.name_en }}
         </li>
       </ul>
     </div>
+
+    <hr>
+
+    <deck-tab-footer />
 
   </main>
 </template>
 
 <script>
 import DeckTabHeader from './DeckTabHeader.vue'
+import DeckTabFooter from './DeckTabFooter.vue'
 import { mapGetters } from 'vuex'
 
 export default {
   name: 'DeckTab',
 
   components: {
-    DeckTabHeader
+    DeckTabHeader,
+    DeckTabFooter
   },
 
   computed: {
-
     deckCards () {
       return this.getDeckCards()
     }
