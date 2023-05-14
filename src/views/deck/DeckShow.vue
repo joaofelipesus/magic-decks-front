@@ -56,20 +56,20 @@ export default {
 <style lang="scss" scoped>
 @import 'bootstrap/dist/css/bootstrap';
 
-  .deck-show {
-    &__main {
-      display: flex;
-      flex-direction: row;
+.deck-show {
+  &__main {
+    display: flex;
+    flex-direction: row;
 
-      &__card-search {
-        @extend .col-8;
-      }
+    &__card-search {
+      @extend .col-8;
+    }
 
-      &__deck-tab {
-        @extend .col-4;
-        height: 90vh;
-        border-left: 4px solid #08121c;
-      }
+    &__deck-tab {
+      @extend .col-4;
+      height: 90vh;
+      border-left: 4px solid #08121c;
     }
   }
+}
 </style>
