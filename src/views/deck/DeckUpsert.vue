@@ -6,21 +6,27 @@
       <h2 class="mb-3">New deck</h2>
 
       <div>
-        <form @submit.prevent="handleSubmit">
+        <form
+          @submit.prevent="handleSubmit"
+          data-test="deck-form"
+        >
           <input-field
             label="Name"
             v-model="name"
+            data-test="deck-name"
           />
 
           <select-field
             label="Format"
             v-model="format"
             :options="formatOptions"
+            data-test="deck-format"
           />
 
           <text-area-field
             label="Description"
             v-model="description"
+            data-test="deck-description"
           />
 
           <button
@@ -83,7 +89,7 @@ export default {
           this.$router.push({ name: 'deck-show', params: { id: response.data.id } })
           this.$toast.success('Deck created successfully')
         })
-        .catch(error => this.handleResponseError(error))
+        .catch(error => { this.handleResponseError(error)})
     },
 
     payload() {
