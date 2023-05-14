@@ -60,7 +60,7 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapActions, mapMutations } from 'vuex'
 import formErrorHandler from '@/mixins/form-error-handler'
 
 export default {
@@ -94,6 +94,7 @@ export default {
 
   methods: {
     ...mapActions(['addToCollection', 'createDeckCard']),
+    ...mapMutations(['addDeckCard']),
 
     handleAddToCollection () {
       this.addToCollection(this.card)
@@ -106,9 +107,10 @@ export default {
 
     handleCreateDeckCard () {
       this.createDeckCard({deckId: this.deckId, card: this.card})
-        .then(_response => {
+        .then(response => {
           this.$toast.success('Card added to deck.')
           this.$emit('closeSelectedCardModal')
+          this.addDeckCard(response.data)
         })
         .catch(error => this.handleResponseError(error))
     }
