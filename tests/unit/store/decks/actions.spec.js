@@ -29,4 +29,14 @@ describe('decksStore', () => {
       })
     })
   })
+
+  describe('#findDeck', () => {
+    it('calls the correct URL', async () => {
+      api.get = jest.fn()
+
+      await actions.findDeck(expect.anything(), 1)
+
+      expect(api.get).toHaveBeenCalledWith('/decks/1')
+    })
+  })
 })
