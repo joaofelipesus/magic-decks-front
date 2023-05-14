@@ -8,8 +8,6 @@ export default {
   },
 
   getDeckCards (state) {
-    console.log(state.deck)
-
     return state.deck?.deck_cards
   }
 }
