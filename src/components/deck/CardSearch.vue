@@ -187,6 +187,8 @@ export default {
       flex-direction: row;
       flex-wrap: wrap;
       gap: 1rem;
+      height: 40em;
+      overflow: scroll;
     }
 
     &__loading-div {
