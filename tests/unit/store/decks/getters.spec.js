@@ -4,7 +4,8 @@ describe('decksStore.getters', () => {
   const state = {
     deck: {
       name: 'Test Deck',
-      deck_cards: [ {id: 1, name: 'Test Card 1'}, {id: 2, name: 'Test Card 2'}]
+      deck_cards: [ {id: 1, name: 'Test Card 1'}, {id: 2, name: 'Test Card 2'}],
+      format: 'commander'
     }
   }
 
@@ -26,6 +27,12 @@ describe('decksStore.getters', () => {
         {id: 1, name: 'Test Card 1'},
         {id: 2, name: 'Test Card 2'}
       ])
+    })
+  })
+
+  describe('getDeckFormat', () => {
+    it('returns deck cards from state', () => {
+      expect(getters.getDeckFormat(state)).toEqual('commander')
     })
   })
 })
